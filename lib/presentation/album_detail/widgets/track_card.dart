@@ -23,7 +23,7 @@ class TrackCard extends StatelessWidget {
       ),
       title: Text(track.name),
       trailing: track.duration != null
-      ? Text(Formatters.durationToMinutes(track.duration!)) : null,
+      ? Text(Helpers.durationToMinutes(track.duration!)) : null,
     );
   }
 }

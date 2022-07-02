@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:appsfactory_test/core/core.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
 
 abstract class ImageClient{
   Future<void> save(String? imageUrl);
@@ -20,7 +19,7 @@ class ImageClientImpl implements ImageClient{
 
     try{
       final http.Response response = await http.get(Uri.parse(imageUrl));
-      final File file = await _getFile(imageUrl);
+      final File file = await Helpers.getAppFile(basename(imageUrl));
       file.writeAsBytesSync(response.bodyBytes);
     } on Exception catch(error){
       throw DBException(error.toString());
@@ -34,7 +33,7 @@ class ImageClientImpl implements ImageClient{
     }
 
     try{
-      final File file = await _getFile(imageUrl);
+      final File file = await Helpers.getAppFile(basename(imageUrl));
 
       if(file.existsSync()){
         file.deleteSync();
@@ -47,7 +46,7 @@ class ImageClientImpl implements ImageClient{
   @override
   Future<String?> filePath(String imageUrl) async {
     try{
-      final File file = await _getFile(imageUrl);
+      final File file = await Helpers.getAppFile(basename(imageUrl));
 
       if(file.existsSync()){
         return file.path;
@@ -57,11 +56,5 @@ class ImageClientImpl implements ImageClient{
     } on Exception catch(error){
       throw DBException(error.toString());
     }
-  }
-
-  Future<File> _getFile(String imageUrl) async {
-    final Directory documentDirectory = await getApplicationDocumentsDirectory();
-
-    return File(join(documentDirectory.path, basename(imageUrl)));
   }
 }
