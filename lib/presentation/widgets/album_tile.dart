@@ -1,3 +1,4 @@
+import 'package:appsfactory_test/domain/enitities/album_detail.dart';
 import 'package:appsfactory_test/presentation/save_album/widgets/save_delete_button.dart';
 import 'package:appsfactory_test/presentation/widgets/af_list_tile.dart';
 import 'package:appsfactory_test/presentation/widgets/album_image/widgets/album_image.dart';
@@ -5,31 +6,25 @@ import 'package:flutter/material.dart';
 
 class AlbumTile extends StatelessWidget {
   const AlbumTile({
-    required this.imageUrl,
-    required this.albumName,
-    required this.artistName,
-    required this.mbid,
+    required this.albumDetail,
     this.onTap,
     super.key,
   });
 
-  final String? imageUrl;
-  final String albumName;
-  final String artistName;
-  final String mbid;
+  final AlbumDetail albumDetail;
   final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return AFListTile(
       leading: AlbumImage(
-        imageUrl: imageUrl,
+        imageUrl: albumDetail.imageUrl,
       ),
-      title: albumName,
-      subtitle: artistName,
+      title: albumDetail.name,
+      subtitle: albumDetail.artistName,
       trailing: SaveDeleteButton(
-        mbid: mbid,
-        imageUrl: imageUrl,
+        mbid: albumDetail.mbid,
+        imageUrl: albumDetail.imageUrl,
       ),
       onTap: onTap,
     );

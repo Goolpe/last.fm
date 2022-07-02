@@ -34,13 +34,8 @@ class TopAlbumsPage extends StatelessWidget {
               onPressed: () => Navigator.pop(context),
             );
           },
-          itemBuilder: (AlbumDetail item, int index) {
-            return AlbumCard(
-              imageUrl: item.imageUrl, 
-              albumName: item.name, 
-              artistName: item.artistName,
-              mbid: item.mbid,
-            );
+          itemBuilder: (AlbumDetail albumDetail, int index) {
+            return AlbumCard(albumDetail: albumDetail);
           },
         ),
       ),

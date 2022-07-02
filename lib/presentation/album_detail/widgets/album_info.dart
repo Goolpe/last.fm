@@ -30,12 +30,7 @@ class AlbumInfo extends StatelessWidget {
         
           return ListView(
             children: [
-              AlbumTile(
-                imageUrl: albumDetail.imageUrl, 
-                albumName: albumDetail.name, 
-                artistName: albumDetail.artistName,
-                mbid: albumDetail.mbid,
-              ),
+              AlbumTile(albumDetail: albumDetail),
               const Divider(height: 1),
               ListTile(
                 title: Row(

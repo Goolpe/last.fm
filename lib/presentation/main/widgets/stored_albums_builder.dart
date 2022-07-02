@@ -35,14 +35,11 @@ class StoredAlbumsBuilder extends BlocBuilder<StoredAlbumsCubit, StoredAlbumsSta
             itemCount: state.albums.length,
             padding: const EdgeInsets.all(12),
             itemBuilder: (BuildContext context, int index){
-              final AlbumDetail album = state.albums[index];
+              final AlbumDetail albumDetail = state.albums[index];
               
               return AlbumCard(
-                key: Key(album.mbid),
-                imageUrl: album.imageUrl, 
-                albumName: album.name, 
-                artistName: album.artistName,
-                mbid: album.mbid,
+                key: Key(albumDetail.mbid),
+                albumDetail: albumDetail,
               );
             }, 
           ),
