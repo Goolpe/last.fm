@@ -1,0 +1,16 @@
+{
+    "mainPage": "Main Page",
+    "detailPage": "Detail Page",
+    "searchPage": "Search Page",
+    "topAlbumsPage": "Top Albums Page",
+    "thereAreNoAlbumsHereYet": "There are no albums here yet",
+    "findAnArtist": "Find an artist",
+    "back": "Back",
+    "enterArtist": "Enter artist",
+    "tracklist": "Tracklist",
+    "inputSomething": "Input something",
+    "nothingFound": "Nothing found",
+    "tracksNotFound": "Tracks not found",
+    "tryAgain": "Try Again",
+    "yourAlbums": "Your Albums"
+}
