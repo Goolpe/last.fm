@@ -1,7 +1,7 @@
-import 'package:appsfactory_test/core/core.dart';
 import 'package:appsfactory_test/presentation/save_album/bloc/save_delete_album_cubit.dart';
 import 'package:appsfactory_test/presentation/save_album/bloc/save_delete_album_state.dart';
-import 'package:appsfactory_test/presentation/widgets/loading_indicator.dart';
+import 'package:appsfactory_test/presentation/save_album/widgets/delete_album_button.dart';
+import 'package:appsfactory_test/presentation/save_album/widgets/save_album_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,47 +22,25 @@ class SaveDeleteButton extends StatelessWidget {
         mbid: mbid,
         imageUrl: imageUrl,
       ),
-      child: BlocListener<SaveDeleteAlbumCubit, SaveDeleteAlbumState>(
-        listener: (BuildContext context, SaveDeleteAlbumState state) {
-          if(state is SaveDeleteAlbumError){
-            showErrorFlushbar(context, state.error);
-          }
-        },
-        child: BlocBuilder<SaveDeleteAlbumCubit, SaveDeleteAlbumState>(
-          builder: (BuildContext context, SaveDeleteAlbumState state){
-            final SaveDeleteAlbumCubit cubit = context.read<SaveDeleteAlbumCubit>();
+      child: BlocBuilder<SaveDeleteAlbumCubit, SaveDeleteAlbumState>(
+        builder: (BuildContext context, SaveDeleteAlbumState state){
 
-            if(state is SaveDeleteAlbumNetwork){
-              return IconButton(
-                icon: const Icon(Icons.save_alt, color: Colors.grey,),
-                onPressed: cubit.save,
-              );
-            }
-
-            if(state is SaveDeleteAlbumLocal){
-              return IconButton(
-                icon: const Icon(Icons.delete_forever, color: Colors.grey,),
-                onPressed: cubit.delete, 
-              );
-            }
-
-            if(state is SaveDeleteAlbumError){
-              return IconButton(
-                icon: const Icon(Icons.replay, color: Colors.red,),
-                onPressed: state.repeat,
-              );
-            }
-
-            return const IconButton(
-              icon: LoadingIndicator(
-                size: 24,
-                strokeWidth: 2,
-                color: Colors.grey,
-              ),
-              onPressed: null, 
+          if(state is SaveDeleteAlbumNetwork){
+            return SaveAlbumButton(
+              mbid: mbid,
+              imageUrl: imageUrl,
             );
-          },
-        ),
+          }
+
+          if(state is SaveDeleteAlbumLocal){
+            return DeleteAlbumButton(
+              mbid: mbid,
+              imageUrl: imageUrl,
+            );
+          }
+
+          return const SizedBox.shrink();
+        },
       ),
     );
   }

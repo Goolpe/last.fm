@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:appsfactory_test/presentation/widgets/image/bloc/album_image_cubit.dart';
-import 'package:appsfactory_test/presentation/widgets/image/bloc/album_image_state.dart';
+import 'package:appsfactory_test/presentation/widgets/album_image/bloc/album_image_cubit.dart';
+import 'package:appsfactory_test/presentation/widgets/album_image/bloc/album_image_state.dart';
 import 'package:appsfactory_test/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

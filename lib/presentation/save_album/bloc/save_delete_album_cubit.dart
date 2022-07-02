@@ -2,9 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:appsfactory_test/core/core.dart';
-import 'package:appsfactory_test/domain/usecases/delete_album.dart';
 import 'package:appsfactory_test/domain/usecases/is_stored_album.dart';
-import 'package:appsfactory_test/domain/usecases/save_album.dart';
 import 'package:appsfactory_test/domain/usecases/watch_stored_album.dart';
 import 'package:appsfactory_test/presentation/save_album/bloc/save_delete_album_state.dart';
 import 'package:dartz/dartz.dart';
@@ -37,7 +35,7 @@ class SaveDeleteAlbumCubit extends SafeCubit<SaveDeleteAlbumState> {
     );
 
     result.fold((failure){
-      emit(SaveDeleteAlbumError(failure.message.toString(), _containsStoredAlbum));
+      emit(SaveDeleteAlbumError(failure.message.toString()));
     }, (contains){
       if(contains){
         emit(SaveDeleteAlbumLocal());
@@ -76,49 +74,5 @@ class SaveDeleteAlbumCubit extends SafeCubit<SaveDeleteAlbumState> {
     subscription?.cancel();
 
     return super.close();
-  }
-
-  Future<void> save() async {
-    emit(SaveDeleteAlbumLoading());
-
-    final SaveAlbum saveAlbum = SaveAlbum();
-
-    final Either<Failure, void> result = await saveAlbum(
-      SaveAlbumParams(mbid: mbid, imageUrl: imageUrl),
-    );
-    
-    result.fold(
-      (Failure failure) {
-        emit(SaveDeleteAlbumError(
-          failure.message.toString(), 
-          save,
-        ));
-      }, 
-      (r) {
-        emit(SaveDeleteAlbumLocal());
-      },
-    );
-  }
-
-  Future<void> delete() async {
-    emit(SaveDeleteAlbumLoading());
-
-    final DeleteAlbum deleteAlbum = DeleteAlbum();
-
-    final Either<Failure, void> result = await deleteAlbum(
-      DeleteAlbumParams(mbid: mbid, imageUrl: imageUrl),
-    );
-
-    result.fold(
-      (Failure failure) {
-        emit(SaveDeleteAlbumError(
-          failure.message.toString(), 
-          delete,
-        ));
-      }, 
-      (r) {
-        emit(SaveDeleteAlbumNetwork());
-      },
-    );
   }
 }

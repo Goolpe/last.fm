@@ -16,11 +16,10 @@ class SaveDeleteAlbumLocal extends SaveDeleteAlbumState{}
 class SaveDeleteAlbumNetwork extends SaveDeleteAlbumState{}
 
 class SaveDeleteAlbumError extends SaveDeleteAlbumState{
-  const SaveDeleteAlbumError(this.error, this.repeat);
+  const SaveDeleteAlbumError(this.error);
 
   final String error;
-  final Future<void> Function() repeat;
 
   @override
-  List<Object> get props => [error, repeat];
+  List<Object> get props => [error];
 }

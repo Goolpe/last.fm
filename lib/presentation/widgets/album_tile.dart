@@ -1,6 +1,6 @@
 import 'package:appsfactory_test/presentation/save_album/widgets/save_delete_button.dart';
 import 'package:appsfactory_test/presentation/widgets/af_list_tile.dart';
-import 'package:appsfactory_test/presentation/widgets/image/widgets/album_image.dart';
+import 'package:appsfactory_test/presentation/widgets/album_image/widgets/album_image.dart';
 import 'package:flutter/material.dart';
 
 class AlbumTile extends StatelessWidget {

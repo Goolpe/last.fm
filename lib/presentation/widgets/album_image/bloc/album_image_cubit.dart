@@ -1,6 +1,6 @@
 import 'package:appsfactory_test/core/core.dart';
 import 'package:appsfactory_test/domain/usecases/get_file_path.dart';
-import 'package:appsfactory_test/presentation/widgets/image/bloc/album_image_state.dart';
+import 'package:appsfactory_test/presentation/widgets/album_image/bloc/album_image_state.dart';
 
 class AlbumImageCubit extends SafeCubit<AlbumImageState> {
   AlbumImageCubit({
