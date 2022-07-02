@@ -7,14 +7,14 @@ import 'package:dartz/dartz.dart';
 class AlbumDetailCubit extends SafeCubit<AlbumDetailState> {
   AlbumDetailCubit({
     required this.mbid,
-  }) : super(AlbumDetailStateLoading()){
+  }) : super(AlbumDetailLoading()){
     fetchAlbumDetail();
   }
 
   final String mbid;
 
   Future<void> fetchAlbumDetail() async {
-    emit(AlbumDetailStateLoading());
+    emit(AlbumDetailLoading());
 
     final GetAlbumDetail getAlbumDetail = GetAlbumDetail();
 
@@ -26,10 +26,10 @@ class AlbumDetailCubit extends SafeCubit<AlbumDetailState> {
     
     result.fold(
       (Failure failure){
-        emit(AlbumDetailStateError(failure.message.toString(), fetchAlbumDetail));
+        emit(AlbumDetailError(failure.message.toString(), fetchAlbumDetail));
       }, 
       (AlbumDetail albumDetail){
-        emit(AlbumDetailStateSuccess(albumDetail));
+        emit(AlbumDetailSuccess(albumDetail));
       },
     );
   }

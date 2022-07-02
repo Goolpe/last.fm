@@ -24,7 +24,7 @@ class SaveDeleteButton extends StatelessWidget {
       ),
       child: BlocListener<SaveDeleteAlbumCubit, SaveDeleteAlbumState>(
         listener: (BuildContext context, SaveDeleteAlbumState state) {
-          if(state is SaveDeleteAlbumStateError){
+          if(state is SaveDeleteAlbumError){
             showErrorFlushbar(context, state.error);
           }
         },
@@ -32,21 +32,21 @@ class SaveDeleteButton extends StatelessWidget {
           builder: (BuildContext context, SaveDeleteAlbumState state){
             final SaveDeleteAlbumCubit cubit = context.read<SaveDeleteAlbumCubit>();
 
-            if(state is SaveDeleteAlbumStateNetwork){
+            if(state is SaveDeleteAlbumNetwork){
               return IconButton(
                 icon: const Icon(Icons.save_alt, color: Colors.grey,),
                 onPressed: cubit.save,
               );
             }
 
-            if(state is SaveDeleteAlbumStateLocal){
+            if(state is SaveDeleteAlbumLocal){
               return IconButton(
                 icon: const Icon(Icons.delete_forever, color: Colors.grey,),
                 onPressed: cubit.delete, 
               );
             }
 
-            if(state is SaveDeleteAlbumStateError){
+            if(state is SaveDeleteAlbumError){
               return IconButton(
                 icon: const Icon(Icons.replay, color: Colors.red,),
                 onPressed: state.repeat,

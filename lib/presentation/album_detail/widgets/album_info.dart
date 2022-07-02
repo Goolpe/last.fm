@@ -17,7 +17,7 @@ class AlbumInfo extends StatelessWidget {
     return BlocBuilder<AlbumDetailCubit, AlbumDetailState>(
       builder: (BuildContext context, AlbumDetailState state) {
 
-        if(state is AlbumDetailStateError){
+        if(state is AlbumDetailError){
           return TextWithButton(
             text: state.error, 
             textButton: locale.tryAgain, 
@@ -25,7 +25,7 @@ class AlbumInfo extends StatelessWidget {
           );
         }
 
-        if(state is AlbumDetailStateSuccess){
+        if(state is AlbumDetailSuccess){
           final AlbumDetail albumDetail = state.albumDetail;
         
           return ListView(

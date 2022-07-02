@@ -26,7 +26,7 @@ class AlbumImage extends StatelessWidget {
       ),
       child: BlocBuilder<AlbumImageCubit, AlbumImageState>(
         builder: (BuildContext context, AlbumImageState state){
-          if(state is AlbumImageStateNetwork){
+          if(state is AlbumImageNetwork){
             return ImageNetwork(
               state.imageUrl,
               height: height,
@@ -34,7 +34,7 @@ class AlbumImage extends StatelessWidget {
             );
           }
 
-          if(state is AlbumImageStateLocal){
+          if(state is AlbumImageLocal){
             return Image.file(
               File(state.imagePath),
               height: height,

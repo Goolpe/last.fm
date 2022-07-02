@@ -21,17 +21,8 @@ class TopAlbumsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(locale.topAlbumsPage),
       ),
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool value) {
-          return [
-            SliverAppBar(
-              automaticallyImplyLeading: false,
-              title: Text(cubit.artistName),
-              backgroundColor: Colors.transparent,
-              foregroundColor: Theme.of(context).textTheme.bodyText1?.color,
-            ),
-          ];
-        },
+      body: NestedWrapper(
+        title: cubit.artistName,
         body: LazyListView<AlbumDetail>(
           onFetchPage: cubit.fetchArtistTopAlbums,
           separatorBuilder: (context, index) => const SizedBox(height: 8),

@@ -13,7 +13,7 @@ class SaveDeleteAlbumCubit extends SafeCubit<SaveDeleteAlbumState> {
   SaveDeleteAlbumCubit({
     required this.mbid,
     required this.imageUrl,
-  }) : super(SaveDeleteAlbumStateInitial()){
+  }) : super(SaveDeleteAlbumInitial()){
     init();
   }
 
@@ -22,7 +22,32 @@ class SaveDeleteAlbumCubit extends SafeCubit<SaveDeleteAlbumState> {
 
   StreamSubscription? subscription;
 
-  Future<void> startListen() async {
+  void init() {
+    _startListen();
+    _containsStoredAlbum();
+  }
+
+  Future<void> _containsStoredAlbum() async {
+    final IsStoredAlbum isStoredAlbum = IsStoredAlbum();
+
+    final Either<Failure, bool> result = await isStoredAlbum(
+      IsStoredAlbumParams(
+        mbid: mbid,
+      ),
+    );
+
+    result.fold((failure){
+      emit(SaveDeleteAlbumError(failure.message.toString(), _containsStoredAlbum));
+    }, (contains){
+      if(contains){
+        emit(SaveDeleteAlbumLocal());
+      } else{
+        emit(SaveDeleteAlbumNetwork());
+      }
+    },);
+  }
+
+  Future<void> _startListen() async {
     final watchStoredAlbum = WatchStoredAlbum();
 
     final result = await watchStoredAlbum(
@@ -34,39 +59,15 @@ class SaveDeleteAlbumCubit extends SafeCubit<SaveDeleteAlbumState> {
         log(failure.message.toString());
       }, (stream){
         subscription = stream.listen((event) {
-          if(state is! SaveDeleteAlbumStateLoading){
+          if(state is! SaveDeleteAlbumLoading){
             if(event.deleted){
-              emit(SaveDeleteAlbumStateNetwork());
+              emit(SaveDeleteAlbumNetwork());
             } else{
-              emit(SaveDeleteAlbumStateLocal());
+              emit(SaveDeleteAlbumLocal());
             }
           }
         });
       },
-    );
-  }
-
-  Future<void> init() async {
-    final IsStoredAlbum isStoredAlbum = IsStoredAlbum();
-
-    final Either<Failure, bool> result = await isStoredAlbum(
-      IsStoredAlbumParams(
-        mbid: mbid,
-      ),
-    );
-
-    result.fold((failure){
-      emit(SaveDeleteAlbumStateError(failure.message.toString(), init));
-    }, (contains){
-      
-      startListen();
-
-      if(contains){
-        emit(SaveDeleteAlbumStateLocal());
-      } else{
-        emit(SaveDeleteAlbumStateNetwork());
-      }
-    },
     );
   }
 
@@ -78,7 +79,7 @@ class SaveDeleteAlbumCubit extends SafeCubit<SaveDeleteAlbumState> {
   }
 
   Future<void> save() async {
-    emit(SaveDeleteAlbumStateLoading());
+    emit(SaveDeleteAlbumLoading());
 
     final SaveAlbum saveAlbum = SaveAlbum();
 
@@ -88,19 +89,19 @@ class SaveDeleteAlbumCubit extends SafeCubit<SaveDeleteAlbumState> {
     
     result.fold(
       (Failure failure) {
-        emit(SaveDeleteAlbumStateError(
+        emit(SaveDeleteAlbumError(
           failure.message.toString(), 
           save,
         ));
       }, 
       (r) {
-        emit(SaveDeleteAlbumStateLocal());
+        emit(SaveDeleteAlbumLocal());
       },
     );
   }
 
   Future<void> delete() async {
-    emit(SaveDeleteAlbumStateLoading());
+    emit(SaveDeleteAlbumLoading());
 
     final DeleteAlbum deleteAlbum = DeleteAlbum();
 
@@ -110,13 +111,13 @@ class SaveDeleteAlbumCubit extends SafeCubit<SaveDeleteAlbumState> {
 
     result.fold(
       (Failure failure) {
-        emit(SaveDeleteAlbumStateError(
+        emit(SaveDeleteAlbumError(
           failure.message.toString(), 
           delete,
         ));
       }, 
       (r) {
-        emit(SaveDeleteAlbumStateNetwork());
+        emit(SaveDeleteAlbumNetwork());
       },
     );
   }

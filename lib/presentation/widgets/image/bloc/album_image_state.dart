@@ -7,12 +7,12 @@ abstract class AlbumImageState extends Equatable{
   List<Object> get props => [];
 }
 
-class AlbumImageStateLoading extends AlbumImageState{}
+class AlbumImageLoading extends AlbumImageState{}
 
-class AlbumImageStateEmpty extends AlbumImageState{}
+class AlbumImageEmpty extends AlbumImageState{}
 
-class AlbumImageStateLocal extends AlbumImageState {
-  const AlbumImageStateLocal(this.imagePath);
+class AlbumImageLocal extends AlbumImageState {
+  const AlbumImageLocal(this.imagePath);
 
   final String imagePath;
 
@@ -20,8 +20,8 @@ class AlbumImageStateLocal extends AlbumImageState {
   List<Object> get props => [imagePath];
 }
 
-class AlbumImageStateNetwork extends AlbumImageState {
-  const AlbumImageStateNetwork(this.imageUrl);
+class AlbumImageNetwork extends AlbumImageState {
+  const AlbumImageNetwork(this.imageUrl);
 
   final String imageUrl;
 
@@ -29,8 +29,8 @@ class AlbumImageStateNetwork extends AlbumImageState {
   List<Object> get props => [imageUrl];
 }
 
-class AlbumImageStateError extends AlbumImageState {
-  const AlbumImageStateError(this.error);
+class AlbumImageError extends AlbumImageState {
+  const AlbumImageError(this.error);
 
   final String error;
 

@@ -21,10 +21,11 @@ class StoredAlbumsStateSuccess extends StoredAlbumsState{
 }
 
 class StoredAlbumsStateError extends StoredAlbumsState{
-  const StoredAlbumsStateError(this.error);
+  const StoredAlbumsStateError(this.error, this.repeat);
 
   final String error;
+  final Function() repeat;
 
   @override
-  List<Object> get props => [error];
+  List<Object> get props => [error, repeat];
 }

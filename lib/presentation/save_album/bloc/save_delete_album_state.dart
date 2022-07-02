@@ -7,16 +7,16 @@ abstract class SaveDeleteAlbumState extends Equatable{
   List<Object> get props => [];
 }
 
-class SaveDeleteAlbumStateInitial extends SaveDeleteAlbumState{}
+class SaveDeleteAlbumInitial extends SaveDeleteAlbumState{}
 
-class SaveDeleteAlbumStateLoading extends SaveDeleteAlbumState{}
+class SaveDeleteAlbumLoading extends SaveDeleteAlbumState{}
 
-class SaveDeleteAlbumStateLocal extends SaveDeleteAlbumState{}
+class SaveDeleteAlbumLocal extends SaveDeleteAlbumState{}
 
-class SaveDeleteAlbumStateNetwork extends SaveDeleteAlbumState{}
+class SaveDeleteAlbumNetwork extends SaveDeleteAlbumState{}
 
-class SaveDeleteAlbumStateError extends SaveDeleteAlbumState{
-  const SaveDeleteAlbumStateError(this.error, this.repeat);
+class SaveDeleteAlbumError extends SaveDeleteAlbumState{
+  const SaveDeleteAlbumError(this.error, this.repeat);
 
   final String error;
   final Future<void> Function() repeat;

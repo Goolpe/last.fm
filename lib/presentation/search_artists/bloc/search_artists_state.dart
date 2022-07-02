@@ -7,8 +7,8 @@ abstract class SearchArtistsState extends Equatable{
   List<Object> get props => [];
 }
 
-class SearchArtistsStateInitial extends SearchArtistsState{}
+class SearchArtistsInitial extends SearchArtistsState{}
 
-class SearchArtistsStateEmpty extends SearchArtistsState{}
+class SearchArtistsEmpty extends SearchArtistsState{}
 
-class SearchArtistsStateSuccess extends SearchArtistsState {}
+class SearchArtistsSuccess extends SearchArtistsState {}

@@ -20,7 +20,7 @@ class SearchArtistsField extends StatelessWidget {
               autofocus: true,
               maxLength: 50,
               controller: cubit.searchController,
-              onEditingComplete: () => _startSearch(cubit),
+              onEditingComplete: cubit.search,
               textInputAction: TextInputAction.search,
               decoration: InputDecoration(
                 labelText: locale.enterArtist,
@@ -29,16 +29,11 @@ class SearchArtistsField extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () => _startSearch(cubit),
+            onPressed: cubit.search,
             icon: const Icon(Icons.search),
           ),
         ],
       ),
     );
-  }
-
-  void _startSearch(SearchArtistsCubit cubit){
-    FocusManager.instance.primaryFocus?.unfocus();
-    cubit.search();
   }
 }

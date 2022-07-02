@@ -6,22 +6,24 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 
 class SearchArtistsCubit extends SafeCubit<SearchArtistsState> {
-  SearchArtistsCubit() : super(SearchArtistsStateInitial());
+  SearchArtistsCubit() : super(SearchArtistsInitial());
 
   TextEditingController searchController = TextEditingController();
 
   String get _searchText => searchController.text.trim();
 
   Future<void> search() async {
-    emit(SearchArtistsStateInitial());
+    FocusManager.instance.primaryFocus?.unfocus();
+
+    emit(SearchArtistsInitial());
 
     if(_searchText.isEmpty){
-      emit(SearchArtistsStateEmpty());
+      emit(SearchArtistsEmpty());
       
       return;
     }
     
-    emit(SearchArtistsStateSuccess());
+    emit(SearchArtistsSuccess());
   }
 
   Future<Either<Failure, List<Artist>>> fetchArtists(int page) async {

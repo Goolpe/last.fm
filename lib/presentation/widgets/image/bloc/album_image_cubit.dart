@@ -5,17 +5,17 @@ import 'package:appsfactory_test/presentation/widgets/image/bloc/album_image_sta
 class AlbumImageCubit extends SafeCubit<AlbumImageState> {
   AlbumImageCubit({
     required this.imageUrl,
-  }) : super(AlbumImageStateLoading()){
+  }) : super(AlbumImageLoading()){
     getAlbumImage();
   }
 
   final String? imageUrl;
 
   Future<void> getAlbumImage() async {
-    emit(AlbumImageStateLoading());
+    emit(AlbumImageLoading());
 
     if(imageUrl == null || imageUrl!.isEmpty){
-      emit(AlbumImageStateEmpty());
+      emit(AlbumImageEmpty());
 
       return;
     }
@@ -30,12 +30,12 @@ class AlbumImageCubit extends SafeCubit<AlbumImageState> {
 
     result.fold(
       (failure){
-        emit(AlbumImageStateError(failure.message.toString()));
+        emit(AlbumImageError(failure.message.toString()));
       }, (filePath){
         if(filePath != null){
-          emit(AlbumImageStateLocal(filePath));
+          emit(AlbumImageLocal(filePath));
         } else{
-          emit(AlbumImageStateNetwork(imageUrl!));
+          emit(AlbumImageNetwork(imageUrl!));
         }
       },
     );

@@ -17,7 +17,7 @@ class SearchArtistsBuilder extends BlocBuilder<SearchArtistsCubit, SearchArtists
   static Widget _builder(BuildContext context, SearchArtistsState state) {
     final AppLocalizations locale = AppLocalizations.of(context)!;
     
-    if(state is SearchArtistsStateSuccess){
+    if(state is SearchArtistsSuccess){
       return LazyListView<Artist>(
         key: UniqueKey(),
         separatorBuilder: (context, index) => const Divider(height: 5),

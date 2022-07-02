@@ -8,10 +8,10 @@ abstract class AlbumDetailState extends Equatable{
   List<Object> get props => [];
 }
 
-class AlbumDetailStateLoading extends AlbumDetailState{}
+class AlbumDetailLoading extends AlbumDetailState{}
 
-class AlbumDetailStateSuccess extends AlbumDetailState {
-  const AlbumDetailStateSuccess(this.albumDetail);
+class AlbumDetailSuccess extends AlbumDetailState {
+  const AlbumDetailSuccess(this.albumDetail);
 
   final AlbumDetail albumDetail;
 
@@ -19,8 +19,8 @@ class AlbumDetailStateSuccess extends AlbumDetailState {
   List<Object> get props => [albumDetail];
 }
 
-class AlbumDetailStateError extends AlbumDetailState {
-  const AlbumDetailStateError(this.error, this.repeat);
+class AlbumDetailError extends AlbumDetailState {
+  const AlbumDetailError(this.error, this.repeat);
 
   final String error;
   final Function() repeat;

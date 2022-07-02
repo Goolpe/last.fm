@@ -10,6 +10,7 @@ class Application extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: routeGenerator,
       builder: builder,
+      title: kAppName,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
     );

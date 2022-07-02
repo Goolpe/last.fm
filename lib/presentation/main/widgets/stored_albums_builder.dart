@@ -27,23 +27,8 @@ class StoredAlbumsBuilder extends BlocBuilder<StoredAlbumsCubit, StoredAlbumsSta
         );
       }
     
-      return NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool value) {
-          return [
-            SliverAppBar(
-              automaticallyImplyLeading: false,
-              title: Row(
-                children: [
-                  Text(locale.yourAlbums),
-                  const SizedBox(width: 4),
-                  Text('[${state.albums.length}]'),
-                ],
-              ),
-              backgroundColor: Colors.transparent,
-              foregroundColor: Theme.of(context).textTheme.bodyText1?.color,
-            ),
-          ];
-        },
+      return NestedWrapper(
+        title: '${locale.yourAlbums} [${state.albums.length}]',
         body: Scrollbar(
           child: ListView.separated(
             separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 8),
@@ -66,7 +51,11 @@ class StoredAlbumsBuilder extends BlocBuilder<StoredAlbumsCubit, StoredAlbumsSta
     }
 
     if(state is StoredAlbumsStateError){
-      return CenterText(state.error);
+      return TextWithButton(
+        text: state.error,
+        textButton: locale.tryAgain,
+        onPressed: state.repeat,
+      );
     }
 
     return const LoadingIndicator();

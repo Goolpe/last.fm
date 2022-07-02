@@ -10,35 +10,15 @@ import 'package:dartz/dartz.dart';
 
 class StoredAlbumsCubit extends SafeCubit<StoredAlbumsState> {
   StoredAlbumsCubit() : super(StoredAlbumsStateInitial()){
-    _fetchStoredAlbums();
+    init();
   }
   
   StreamSubscription? subscription;
+  List<AlbumDetail> albumDetails = [];
 
-  Future<void> _startListen(List<AlbumDetail> albumDetails) async {
-
-    final watchStoredAlbum = WatchAllStoredAlbums();
-    final result = await watchStoredAlbum(NoParams());
-
-    result.fold(
-      (failure){
-        log(failure.message.toString());
-      }, (stream){
-        final newAbumDetails = List<AlbumDetail>.from(albumDetails);
-        
-        subscription = stream.listen((event) {
-          emit(StoredAlbumsStateLoading());
-
-          if(event.deleted){
-            newAbumDetails.removeWhere((element) => element.mbid == event.key);
-          } else{
-            newAbumDetails.add(event.value);
-          }
-
-          emit(StoredAlbumsStateSuccess(newAbumDetails));
-        });
-      },
-    );
+  void init(){
+    _startListen();
+    _fetchStoredAlbums();
   }
   
   Future<void> _fetchStoredAlbums() async {
@@ -50,11 +30,35 @@ class StoredAlbumsCubit extends SafeCubit<StoredAlbumsState> {
 
     result.fold(
       (Failure failure){
-        emit(StoredAlbumsStateError(failure.message.toString()));
+        emit(StoredAlbumsStateError(failure.message.toString(), _fetchStoredAlbums));
       }, 
       (List<AlbumDetail> albumDetails){
+        this.albumDetails = List.from(albumDetails);
         emit(StoredAlbumsStateSuccess(albumDetails));
-        _startListen(albumDetails);
+      },
+    );
+  }
+
+  Future<void> _startListen() async {
+
+    final watchStoredAlbum = WatchAllStoredAlbums();
+    final result = await watchStoredAlbum(NoParams());
+
+    result.fold(
+      (failure){
+        log(failure.message.toString());
+      }, (stream){        
+        subscription = stream.listen((event) {
+          emit(StoredAlbumsStateLoading());
+
+          if(event.deleted){
+            albumDetails.removeWhere((element) => element.mbid == event.key);
+          } else{
+            albumDetails.add(event.value);
+          }
+
+          emit(StoredAlbumsStateSuccess(albumDetails));
+        });
       },
     );
   }

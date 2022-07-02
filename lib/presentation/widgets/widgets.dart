@@ -5,4 +5,5 @@ export 'center_text.dart';
 export 'image_network.dart';
 export 'lazy_list_view.dart';
 export 'loading_indicator.dart';
+export 'nested_wrapper.dart';
 export 'text_with_button.dart';

@@ -7,4 +7,4 @@ abstract class TopAlbumsState extends Equatable{
   List<Object> get props => [];
 }
 
-class TopAlbumsStateInitial extends TopAlbumsState{}
+class TopAlbumsInitial extends TopAlbumsState{}

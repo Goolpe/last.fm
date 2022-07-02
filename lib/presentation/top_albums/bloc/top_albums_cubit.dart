@@ -7,7 +7,7 @@ import 'package:dartz/dartz.dart';
 class TopAlbumsCubit extends SafeCubit<TopAlbumsState> {
   TopAlbumsCubit({
     required this.artistName,
-  }) : super(TopAlbumsStateInitial());
+  }) : super(TopAlbumsInitial());
 
   final String artistName;
 
