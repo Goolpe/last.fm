@@ -8,6 +8,7 @@ import 'package:appsfactory_test/data/repositories/album_detail_repositories_imp
 import 'package:appsfactory_test/data/repositories/artists_repositories_impl.dart';
 import 'package:appsfactory_test/data/repositories/image_repositories_impl.dart';
 import 'package:get_it/get_it.dart';
+import 'package:http/http.dart' as http;
 
 GetIt getIt = GetIt.instance;
 
@@ -21,7 +22,7 @@ class ServiceLocator{
   }
 
   void _init(){
-    final HttpClientImpl httpClient = HttpClientImpl();
+    final HttpClientImpl httpClient = HttpClientImpl(http.Client());
 
     final DBClientImpl dbClient = DBClientImpl();
 

@@ -10,12 +10,16 @@ abstract class HttpClient {
 }
 
 class HttpClientImpl implements HttpClient {
+  HttpClientImpl(this.client);
+
+  final http.Client client;
+
   @override
   Future<dynamic> get(String path) async {
     try {
       final Uri url = Uri.parse(Api.fullPath(path));
 
-      final response = await http.get(url);
+      final response = await client.get(url).timeout(const Duration(seconds: 5));
     
       if (response.statusCode == 200) {
         return jsonDecode(utf8.decode(response.bodyBytes));

@@ -22,6 +22,9 @@ A music management app with Flutter (iOS and Android) based on the LastFM API. W
     - Artist <br>
     - Image <br>
     - Tracks <br>
+- Tests: <br>
+    - Unit Tests,
+    - Widget Tests
 
 # How to Start
 + Check that flutter version 3 and above
