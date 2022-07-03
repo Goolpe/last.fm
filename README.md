@@ -37,3 +37,9 @@ A music management app with Flutter (iOS and Android) based on the LastFM API. W
 # Knowing issues
 - [Some album detail pages can't be found](https://support.last.fm/t/404-album-getinfo/62023)
 - [Broken artist images](https://support.last.fm/t/api-announcement-usage-of-audio-audiovisual-images-or-artwork/202/2)
+
+# Screens
+<img src="https://raw.githubusercontent.com/Goolpe/appsfactory_test/main/assets/github_images/main_page.jpeg" width="200" /> |
+<img src="https://raw.githubusercontent.com/Goolpe/appsfactory_test/main/assets/github_images/search_page.jpeg" width="200" /> |
+<img src="https://raw.githubusercontent.com/Goolpe/appsfactory_test/main/assets/github_images/top_albums_page.jpeg" width="200" /> |
+<img src="https://raw.githubusercontent.com/Goolpe/appsfactory_test/main/assets/github_images/detail_page.jpeg" width="200" /> |
