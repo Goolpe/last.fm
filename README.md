@@ -39,7 +39,7 @@ A music management app with Flutter (iOS and Android) based on the LastFM API. W
 - [Broken artist images](https://support.last.fm/t/api-announcement-usage-of-audio-audiovisual-images-or-artwork/202/2)
 
 # Screens
-<img src="https://raw.githubusercontent.com/Goolpe/appsfactory_test/main/assets/github_images/main_page.jpeg" width="200" /> |
-<img src="https://raw.githubusercontent.com/Goolpe/appsfactory_test/main/assets/github_images/search_page.jpeg" width="200" /> |
-<img src="https://raw.githubusercontent.com/Goolpe/appsfactory_test/main/assets/github_images/top_albums_page.jpeg" width="200" /> |
-<img src="https://raw.githubusercontent.com/Goolpe/appsfactory_test/main/assets/github_images/detail_page.jpeg" width="200" /> |
+<img src="https://raw.githubusercontent.com/Goolpe/appsfactory_test/main/assets/github_images/main_page.jpeg" width="150" /> |
+<img src="https://raw.githubusercontent.com/Goolpe/appsfactory_test/main/assets/github_images/search_page.jpeg" width="150" /> |
+<img src="https://raw.githubusercontent.com/Goolpe/appsfactory_test/main/assets/github_images/top_albums_page.jpeg" width="150" /> |
+<img src="https://raw.githubusercontent.com/Goolpe/appsfactory_test/main/assets/github_images/detail_page.jpeg" width="150" /> |
