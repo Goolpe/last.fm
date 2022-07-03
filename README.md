@@ -20,11 +20,12 @@ A music management app with Flutter (iOS and Android) based on the LastFM API. W
     c. Tap on an album opens the detail-page and at least the following information should be stored:<br>
     - Name <br>
     - Artist <br>
-    - Image (size does not matter) <br>
+    - Image <br>
     - Tracks <br>
 
 # How to Start
-+ `flutter run`
++ Check that flutter version 3 and above
++ `flutter run` or `flutter build apk`
 
 # Tested on:
 - Honor 9X
