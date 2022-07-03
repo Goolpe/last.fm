@@ -34,7 +34,9 @@ class StoredAlbumsCubit extends SafeCubit<StoredAlbumsState> {
       }, 
       (List<AlbumDetail> albumDetails){
         this.albumDetails = List.from(albumDetails);
-        emit(StoredAlbumsStateSuccess(albumDetails));
+        this.albumDetails.sort((a,b) => 
+          (b.savedAt ?? DateTime.now()).compareTo(a.savedAt ?? DateTime.now()));
+        emit(StoredAlbumsStateSuccess(this.albumDetails));
       },
     );
   }
@@ -54,7 +56,7 @@ class StoredAlbumsCubit extends SafeCubit<StoredAlbumsState> {
           if(event.deleted){
             albumDetails.removeWhere((element) => element.mbid == event.key);
           } else{
-            albumDetails.add(event.value);
+            albumDetails.insert(0, event.value);
           }
 
           emit(StoredAlbumsStateSuccess(albumDetails));

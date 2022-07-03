@@ -8,6 +8,7 @@ class AlbumDetail extends Equatable{
     required this.artistName,
     required this.imageUrl,
     required this.tracks,
+    this.savedAt,
   });
 
   final String mbid;
@@ -15,6 +16,7 @@ class AlbumDetail extends Equatable{
   final String artistName;
   final String? imageUrl;
   final List<Track> tracks;
+  final DateTime? savedAt;
   
   @override
   List<Object?> get props => [
@@ -23,5 +25,6 @@ class AlbumDetail extends Equatable{
     artistName, 
     imageUrl,
     tracks,
+    savedAt,
   ];
 }

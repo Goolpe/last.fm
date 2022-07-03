@@ -14,6 +14,7 @@ class AlbumDetailModel extends Equatable {
     required this.artist,
     required this.image,
     required this.tracks,
+    required this.savedAt,
   });
 
   factory AlbumDetailModel.fromJson(Map<String, dynamic> json) 
@@ -29,6 +30,7 @@ class AlbumDetailModel extends Equatable {
   @_TracksConverter()
   @JsonKey(defaultValue: <TrackModel>[])
   final List<TrackModel> tracks;
+  final DateTime? savedAt;
   
   String? get imageUrl => image
     .firstWhereOrNull((ImageModel img) => img.size == 'large')?.url;
@@ -41,13 +43,15 @@ class AlbumDetailModel extends Equatable {
     String? artist,
     List<ImageModel>? image,
     List<TrackModel>? tracks,
+    DateTime? savedAt,
   }){
     return AlbumDetailModel(
-      mbid: mbid,
+      mbid: mbid ?? this.mbid,
       artist: artist ?? this.artist,
       name: name ?? this.name,
       image: image ?? this.image,
       tracks: tracks ?? this.tracks,
+      savedAt: savedAt ?? this.savedAt,
     );
   }
 

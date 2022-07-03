@@ -14,6 +14,7 @@ class AlbumDetailMapper {
       artistName: object.artist,
       imageUrl: object.imageUrl,
       tracks: object.tracks.map((TrackModel e) => TrackMapper.fromTrackModel(e)).toList(),
+      savedAt: object.savedAt,
     );
   }
 

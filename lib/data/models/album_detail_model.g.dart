@@ -19,6 +19,9 @@ AlbumDetailModel _$AlbumDetailModelFromJson(Map<String, dynamic> json) =>
           ? []
           : const _TracksConverter()
               .fromJson(json['tracks'] as Map<String, dynamic>),
+      savedAt: json['savedAt'] == null
+          ? null
+          : DateTime.parse(json['savedAt'] as String),
     );
 
 Map<String, dynamic> _$AlbumDetailModelToJson(AlbumDetailModel instance) =>
@@ -28,4 +31,5 @@ Map<String, dynamic> _$AlbumDetailModelToJson(AlbumDetailModel instance) =>
       'artist': instance.artist,
       'image': instance.image.map((e) => e.toJson()).toList(),
       'tracks': const _TracksConverter().toJson(instance.tracks),
+      'savedAt': instance.savedAt?.toIso8601String(),
     };

@@ -65,7 +65,7 @@ class AlbumDetailRepositoryImpl implements AlbumDetailRepository {
     try {
       final AlbumDetailModel albumDetailModel = await remoteDataSource.getAlbumDetail(mbid);
 
-      final result = await localDataSource.saveAlbum(albumDetailModel);
+      final result = await localDataSource.saveAlbum(albumDetailModel.copyWith(savedAt: DateTime.now()));
 
       return Right(result);
     } on DBException catch (error) {
