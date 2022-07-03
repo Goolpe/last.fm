@@ -7,6 +7,8 @@ export 'config/api.dart';
 export 'config/constants.dart';
 export 'exceptions/exceptions.dart';
 export 'exceptions/failure.dart';
+export 'theme/colors.dart';
+export 'theme/themes.dart';
 export 'utils/builder.dart';
 export 'utils/flushbar.dart';
 export 'utils/helpers.dart';

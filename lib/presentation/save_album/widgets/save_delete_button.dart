@@ -39,7 +39,10 @@ class SaveDeleteButton extends StatelessWidget {
             );
           }
 
-          return const SizedBox.shrink();
+          return const SizedBox(
+            width: 24,
+            height: 24,
+          );
         },
       ),
     );

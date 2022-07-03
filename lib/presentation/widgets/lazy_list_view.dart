@@ -1,4 +1,5 @@
 import 'package:appsfactory_test/core/core.dart';
+import 'package:appsfactory_test/presentation/widgets/loading_indicator.dart';
 import 'package:appsfactory_test/presentation/widgets/text_with_button.dart';
 import 'package:dartz/dartz.dart' show Either;
 import 'package:flutter/material.dart';
@@ -75,6 +76,8 @@ class _LazyListViewState<T> extends State<LazyListView<T>> {
           itemBuilder: (BuildContext context, item, int index){
             return widget.itemBuilder(item, index);
           },
+          firstPageProgressIndicatorBuilder: _loadingWidget,
+          newPageProgressIndicatorBuilder: _loadingWidget,
           firstPageErrorIndicatorBuilder: _errorWidget,
           newPageErrorIndicatorBuilder: _errorWidget,
         ),
@@ -90,5 +93,9 @@ class _LazyListViewState<T> extends State<LazyListView<T>> {
       textButton: locale.tryAgain, 
       onPressed: _pagingController.retryLastFailedRequest,
     );
+  }
+
+  Widget _loadingWidget(BuildContext context){
+    return const LoadingIndicator();
   }
 }

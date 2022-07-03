@@ -12,7 +12,7 @@ class SearchArtistsField extends StatelessWidget {
     final SearchArtistsCubit cubit = context.read<SearchArtistsCubit>();
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.all(12),
       child: Row(
         children: [
           Expanded(
@@ -28,9 +28,16 @@ class SearchArtistsField extends StatelessWidget {
               ),
             ),
           ),
-          IconButton(
-            onPressed: cubit.search,
-            icon: const Icon(Icons.search),
+          Container(
+            margin: const EdgeInsets.only(left: 8),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Theme.of(context).primaryColor,
+            ),
+            child: IconButton(
+              onPressed: cubit.search,
+              icon: const Icon(Icons.search, color: Colors.white),
+            ),
           ),
         ],
       ),

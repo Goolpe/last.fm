@@ -33,7 +33,7 @@ class LoadButton extends StatelessWidget {
 
             if(state is LoadButtonInitial){
               return IconButton(
-                icon: Icon(icon, color: theme.textTheme.bodyText1?.color),
+                icon: Icon(icon, color: theme.textTheme.caption?.color),
                 onPressed: cubit.action,
               );
             }
@@ -48,15 +48,18 @@ class LoadButton extends StatelessWidget {
             if(state is LoadButtonLoading){
               return IconButton(
                 icon: LoadingIndicator(
-                  size: 24,
+                  size: 20,
                   strokeWidth: 2,
-                  color: theme.textTheme.bodyText1?.color,
+                  color: theme.textTheme.caption?.color,
                 ),
                 onPressed: null, 
               );
             }
 
-            return const SizedBox.shrink();
+            return const SizedBox(
+              width: 24,
+              height: 24,
+            );
           },
         ),
       ),
