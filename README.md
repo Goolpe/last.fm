@@ -4,9 +4,10 @@ A music management app with Flutter (iOS and Android) based on the LastFM API
 
 ## The App contains the following:
 
-- Main Screen <br>
+- Main Page <br>
 - Search Page <br>
-- Top Albums <br>
+- Top Albums Page<br>
+- Detail Page <br>
 - Unit and widget tests <br>
 
 # How to Start
