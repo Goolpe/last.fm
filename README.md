@@ -1,5 +1,3 @@
-# Test App for AppsFactory
-
 A music management app with Flutter (iOS and Android) based on the LastFM API
 
 ## The App contains the following:
